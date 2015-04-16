@@ -1,0 +1,9 @@
+---
+- hosts: diarysys
+  sudo: yes
+  user: vagrant
+  roles:
+    - common
+    - apache
+    - php-5.6
+    - mysql

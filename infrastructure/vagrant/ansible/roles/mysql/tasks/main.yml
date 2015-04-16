@@ -1,0 +1,15 @@
+- name: install mysql
+  yum: name={{ item }} state=latest
+  with_items:
+    - mysql-server
+    - MySQL-python
+- name: copy sqlfile
+  copy: "src={{ mysql_sqlfile }} dest=/home/vagrant/"
+- name: start mysql and enabled
+  service: name=mysqld state=started enabled=yes
+- name: create database
+  mysql_db: "name={{ db_name }} state=present"
+- name: create user
+  mysql_user: "name={{ mysql_userid }} password={{ mysql_passwd }} priv={{ db_name }}.*:ALL state=present"
+- name: initialize table
+  shell: "/usr/bin/mysql -u {{ mysql_userid }} -p{{ mysql_passwd }} {{ db_name }} < {{ mysql_sqlfile }}"

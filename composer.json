@@ -1,0 +1,8 @@
+{
+    "require": {
+        "doctrine/annotations": "1.2.*",
+        "doctrine/dbal": "2.5.*",
+        "twig/twig": "1.*",
+        "mustangostang/spyc": "*"
+    }
+}
