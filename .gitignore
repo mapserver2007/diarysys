@@ -7,3 +7,4 @@ app/views/_cache/
 vendor
 composer.phar
 composer.lock
+infrastructure/vagrant/**/.vagrant

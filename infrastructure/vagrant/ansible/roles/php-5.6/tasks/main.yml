@@ -9,6 +9,4 @@
     - php-mysql
 - name: install composer
   shell: /usr/bin/curl -s http://getcomposer.org/installer | php && mv -f composer.phar /usr/bin/composer
-- name: execute composer
-  composer: "command=install working_dir=\"{{ wwwroot }}\"/WebStream"
   notify: restart apache

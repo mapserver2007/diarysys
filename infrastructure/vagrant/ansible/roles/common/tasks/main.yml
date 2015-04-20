@@ -4,10 +4,15 @@
   yum: name={{ item }}
   with_items:
     - https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-    - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    - http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+    - http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
 - name: install git
   yum: name=git state=latest
 - name: install unzip
   yum: name=unzip state=latest
 - name: ld-linux.so.2 for sqlite3
   yum: name=ld-linux.so.2 state=latest
+- name: install locate
+  yum: name=mlocate state=latest
+- name: set JST timezone
+  shell: cp /usr/share/zoneinfo/Japan /etc/localtime
