@@ -7,6 +7,8 @@
     - php-devel
     - php-mbstring
     - php-mysql
+    - php-xml
+    - php-pecl-xdebug
 - name: install composer
   shell: /usr/bin/curl -s http://getcomposer.org/installer | php && mv -f composer.phar /usr/bin/composer
   notify: restart apache
