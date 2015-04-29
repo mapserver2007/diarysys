@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+%T{head.tmpl}
+</head>
+<body>
+<div id="header">
+  <div class="left_container">
+    <p class="site_title">町田女子トラベラーズを応援する会 オフィシャルブログ</p>
+    <p class="site_summary">ライバルは北千住</p>
+  </div>
+  <div class="right_container login_menu">
+    <span>
+      <a href="/diarysys/login">ログイン</a>
+    </span>
+  </div>
+  <div class="clearfix"></div>
+  <div>
+    <ul id="tab">
+      <li>
+        <a href="." id="tab_portal">日記</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="entry">
+%P{$helper->getEntryBox($model->getEntryList())}
+</div>
+</div>
+</body>
+</html>

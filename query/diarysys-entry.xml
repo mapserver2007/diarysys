@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+  "-//github.com/mapserver2007//DTD Mapper 3.0//EN"
+  "http://summer-lights.jp/diarysys6/diarysys-model-mapper.dtd">
+<mapper namespace="Blog\Entry">
+  <select id="entryListQuery">
+    <![CDATA[
+    SELECT (row_num - (:page - 1) * :num) AS row_num, id, title, description, created_at, tag_id, tag_name, category_id, category_name FROM (
+        SELECT
+            @row_num := IF(@prev_id = E.id, @row_num, @row_num + 1) AS row_num,
+            @prev_id := E.id,
+            E.id,
+            E.title,
+            E.description,
+            E.created_at,
+            T.id AS tag_id,
+            T.name AS tag_name,
+            C.id AS category_id,
+            C.name AS category_name
+        FROM T_Entry E
+        CROSS JOIN (SELECT @row_num := 0) ROW_NUM
+        CROSS JOIN (SELECT @prev_id := 0) PREV_ID
+        LEFT JOIN M_EntryTag ET ON ET.entry_id = E.id
+        LEFT JOIN M_Tag T on T.id = ET.tag_id
+        LEFT JOIN M_Category C ON C.id = E.category_id
+        WHERE 1 = 1
+            AND (ISNULL(:entry_id) OR E.id = :entry_id)
+            AND (ISNULL(:tag_name) OR T.name = :tag_name)
+            AND (ISNULL(:category_name) OR C.name = :category_name)
+            AND (ISNULL(:created_at) OR SUBSTRING(E.created_at, 1, 7) = :created_at)
+    ) AS TBL
+    WHERE TBL.row_num > (:page - 1) * :num AND TBL.row_num <= :page * :num;
+    ]]>
+  </select>
+
+  <select id="entryMonthlyQuery">
+  <![CDATA[
+  SELECT
+      SUBSTRING(created_at, 1, 7) AS month,
+      COUNT(*) AS count
+  FROM
+      T_Entry
+  GROUP BY
+      month
+  ]]>
+  </select>
+
+  <select id="entryTagQuery">
+  <![CDATA[
+  SELECT
+      T.name,
+      COUNT(*) AS count
+  FROM
+      M_Tag T
+      INNER JOIN
+      M_EntryTag ET ON
+      T.id = ET.tag_id
+  GROUP BY
+      T.id
+  ]]>
+  </select>
+</mapper>

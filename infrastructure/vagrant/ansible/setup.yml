@@ -4,4 +4,7 @@
   user: vagrant
   roles:
     - common
+    # - nginx
+    - apache
+    - php-5.6
     - mysql

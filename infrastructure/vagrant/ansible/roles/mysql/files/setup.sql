@@ -15,7 +15,6 @@ CREATE TABLE `T_Entry` (
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IX_CREATED_AT` (`created_at`),
-  KEY `IX_SEARCH` (`id`,`title`,`description`(100),`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `M_Tag` (
@@ -31,7 +30,7 @@ CREATE TABLE `M_EntryTag` (
   `entry_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `iX_ENTRY_ID` (`entry_id`),
+  KEY `IX_ENTRY_ID` (`entry_id`),
   KEY `IX_TAG_ID` (`tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
