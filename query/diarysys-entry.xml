@@ -33,7 +33,26 @@
     ]]>
   </select>
 
-  <select id="entryMonthlyQuery">
+  <select id="entryCountQuery">
+    <![CDATA[
+    SELECT COUNT(*) AS count FROM (
+      SELECT
+        E.id
+      FROM T_Entry E
+      LEFT JOIN M_EntryTag ET ON ET.entry_id = E.id
+      LEFT JOIN M_Tag T on T.id = ET.tag_id
+      LEFT JOIN M_Category C ON C.id = E.category_id
+      WHERE 1 = 1
+        AND (ISNULL(:entry_id) OR E.id = :entry_id)
+        AND (ISNULL(:tag_name) OR T.name = :tag_name)
+        AND (ISNULL(:category_name) OR C.name = :category_name)
+        AND (ISNULL(:created_at) OR SUBSTRING(E.created_at, 1, 7) = :created_at)
+      GROUP BY E.id
+    ) AS TBL
+    ]]>
+  </select>
+
+  <select id="entryMonthlyArchiveQuery">
   <![CDATA[
   SELECT
       SUBSTRING(created_at, 1, 7) AS month,
@@ -41,11 +60,11 @@
   FROM
       T_Entry
   GROUP BY
-      month
+      month DESC
   ]]>
   </select>
 
-  <select id="entryTagQuery">
+  <select id="entryTagListQuery">
   <![CDATA[
   SELECT
       T.name,

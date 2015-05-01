@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   /*-moz-box-sizing : border-box;*/
-  font-family : Meiryo, 'Lucida Grande', Verdana, Arial, sans-serif;
+  font-family: 'Arvo',Georgia,'Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',Meiryo,メイリオ,sans-serif;
   color: #333333;
   margin: 0;
   padding: 0;
@@ -25,7 +25,12 @@ body {
   float:right;
 }
 
-/* header */
+.navLink {
+  display: block;
+  text-align: center;
+  padding-top: .8em;
+}
+
 #header {
   margin-left: auto;
   margin-right: auto;
@@ -40,7 +45,25 @@ body {
   padding: 10px 0 10px 3px;
 }
 
+h1 {
+  margin-top: 1em;
+}
+
 /* header */
+.site_title2 {
+  text-align: center;
+}
+
+.trim {
+  min-width: 100px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
 #entry {
   margin-left: auto;
   margin-right: auto;
@@ -49,6 +72,17 @@ body {
   position: relative;
   text-align: left;
   width: 95%;
+}
+
+#sub_content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  min-width: 600px;
+  position: relative;
+  text-align: left;
+  width: 95%;
+  margin-top: 30px;
 }
 
 .entry_box {
@@ -82,15 +116,109 @@ body {
   width: 100%;
 }
 .entry_box .description {
-  margin: 10px 0;
+  margin: 10px 0 20px;
   padding: 0 10px;
-  height: 63px;
+  height: 76px;
   font-size: 10px;
   line-height: 1.5em;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+#monthly_archive {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  min-width: 200px;
+  position: relative;
+  text-align: left;
+  column-width: 150px;
+  -moz-column-width: 150px;
+  -webkit-column-width: 150px;
+  column-count: 3;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  -moz-column-rule: 1px dotted #ccc;
+  -webkit-column-rule: 1px dotted #ccc;
+}
+
+#monthly_archive .archive_year {
+  border-bottom: 1px dotted #ccc;
+  padding: 0.2em 0;
+}
+
+#monthly_archive li {
+  font-size: 15px;
+  list-style-type: none;
+  margin-left: 20px;
+  padding-left: 17px;
+}
+
+#tag_list {
+  width: 500px;
+  text-align: justify;
+}
+
+#tag_list ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+#tag_list li {
+  display: inline;
+  margin-left: 6px;
+  color: #4444E6;
+}
+
+#tag_list sup {
+  font-size: 14px;
+}
+
+.tagcloud1, .tagcloud2, .tagcloud3, .tagcloud4, .tagcloud5,
+.tagcloud6, .tagcloud7, .tagcloud8, .tagcloud9, .tagcloud10 {
+  text-decoration : none;
+  vertical-align : middle;
+}
+
+.tagcloud1 {
+  font-size : 80%;
+}
+
+.tagcloud2 {
+  font-size : 100%;
+}
+
+.tagcloud3 {
+  font-size : 120%;
+}
+
+.tagcloud4 {
+  font-size : 140%;
+}
+
+.tagcloud5 {
+  font-size : 160%;
+}
+
+.tagcloud6 {
+  font-size : 180%;
+}
+
+.tagcloud7 {
+  font-size : 200%;
+}
+
+.tagcloud8 {
+  font-size : 220%;
+}
+
+.tagcloud9 {
+  font-size : 240%;
+}
+
+.tagcloud10 {
+  font-size : 300%;
+}
 
 /** 以下使ってない  */
 

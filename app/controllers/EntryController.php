@@ -31,6 +31,7 @@ class EntryController extends ApplicationController
     {
         $this->num = 10;
         $this->page = $this->request->get("p") ? intval($this->request->get("p")) : 1;
+        $this->Entry->setPathInfo($this->request->getBaseURL() . $this->request->getPathInfo());
     }
 
     /**
@@ -41,10 +42,7 @@ class EntryController extends ApplicationController
      */
     public function entry()
     {
-        $this->Entry->entryList([
-            'num' => $this->num,
-            'page' => $this->page
-        ]);
+        $this->entryList();
     }
 
     /**
@@ -55,9 +53,7 @@ class EntryController extends ApplicationController
      */
     public function entryById(array $params)
     {
-        $this->Entry->entryList([
-            'num' => $this->num,
-            'page' => $this->page,
+        $this->entryList([
             'entry_id' => intval($params["entry_id"])
         ]);
     }
@@ -70,9 +66,7 @@ class EntryController extends ApplicationController
      */
     public function entryByTag(array $params)
     {
-        $this->Entry->entryList([
-            'num' => $this->num,
-            'page' => $this->page,
+        $this->entryList([
             'tag_name' => $params["tag_name"]
         ]);
     }
@@ -85,9 +79,7 @@ class EntryController extends ApplicationController
      */
     public function entryByCategory(array $params)
     {
-        $this->Entry->entryList([
-            'num' => $this->num,
-            'page' => $this->page,
+        $this->entryList([
             'category_name' => $params["category_name"]
         ]);
     }
@@ -108,10 +100,14 @@ class EntryController extends ApplicationController
         }
         $list = str_split($yyyymm, 4);
 
-        $this->Entry->entryList([
-            'num' => $this->num,
-            'page' => $this->page,
+        $this->entryList([
             'created_at' => $list[0] . "-" . $list[1]
         ]);
+    }
+
+    private function entryList($params)
+    {
+        $this->Entry->entryList(array_merge($params, ['num' => $this->num, 'page' => $this->page]));
+        $this->Entry->entryCount($params);
     }
 }

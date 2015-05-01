@@ -4,10 +4,19 @@
 %T{head.tmpl}
 </head>
 <body>
+<h1 class="site_title2">
+    町田女子トラベラーズを応援する会 オフィシャルブログ
+</h1>
+<p class="site_summary">ライバルは北千住</p>
+
+<div class="navLink">
+    <a href="/">github</a>
+    <a href="/">twitter</a>
+    <a href="/">rss</a>
+</div>
+
 <div id="header">
   <div class="left_container">
-    <p class="site_title">町田女子トラベラーズを応援する会 オフィシャルブログ</p>
-    <p class="site_summary">ライバルは北千住</p>
   </div>
   <div class="right_container login_menu">
     <span>
@@ -20,12 +29,34 @@
       <li>
         <a href="." id="tab_portal">日記</a>
       </li>
+      <li>
+        <a href="." id="tab_portal">github</a>
+      </li>
+      <li>
+        <a href="." id="tab_portal">Twitter</a>
+      </li>
+      <li>
+        <a href="." id="tab_portal">Facebook</a>
+      </li>
     </ul>
   </div>
 </div>
+
+<div class="pagerfanta">
+%P{$helper->getPaginate($model->getCurrentPage(), $model->getMaxPerPage(), $model->getEntryCount(), $model->getPathInfo())}
+</div>
+
 <div id="entry">
 %P{$helper->getEntryBox($model->getEntryList())}
 </div>
+
+<div id="sub_content">
+<div class="left_container">
+    <div id="monthly_archive"></div>
 </div>
+<div class="right_container">
+    <div id="tag_list"></div>
+</div>
+
 </body>
 </html>

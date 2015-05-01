@@ -3,20 +3,57 @@ namespace Blog\Entry;
 
 use WebStream\Core\CoreService;
 
+/**
+ * EntryService
+ */
 class EntryService extends CoreService
 {
+    private $pathInfo;
 
     private $entryList;
+
+    private $entryCount;
+
+    private $currentPage;
+
+    private $maxPerPage;
+
+    public function setPathInfo($pathInfo)
+    {
+        $this->pathInfo = $pathInfo;
+    }
+
+    public function getPathInfo()
+    {
+        return $this->pathInfo;
+    }
 
     public function getEntryList()
     {
         return $this->entryList;
     }
 
-    public function entryList($num, $page = 1)
+    public function getEntryCount()
     {
+        return $this->entryCount;
+    }
+
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
+    }
+
+    public function getMaxPerPage()
+    {
+        return $this->maxPerPage;
+    }
+
+    public function entryList(array $params)
+    {
+        $this->currentPage = $params['page'];
+        $this->maxPerPage = $params['num'];
         $entryMap = [];
-        foreach ($this->Entry->entryList($num, $page) as $entry) {
+        foreach ($this->Entry->entryList($params) as $entry) {
             $entryId = $entry["id"];
             if (!array_key_exists($entryId, $entryMap)) {
                 $entryMap[$entryId] = [
@@ -47,5 +84,11 @@ class EntryService extends CoreService
         }
 
         $this->entryList = $entryMap;
+    }
+
+    public function entryCount(array $params)
+    {
+        $result = $this->Entry->entryCount($params)->toArray();
+        $this->entryCount = intval($result[0]['count']);
     }
 }

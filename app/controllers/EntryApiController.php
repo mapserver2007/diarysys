@@ -4,6 +4,7 @@ namespace Blog\Entry;
 use WebStream\Core\CoreController;
 use WebStream\Annotation\Inject;
 use WebStream\Annotation\Header;
+use WebStream\Annotation\Template;
 
 /**
  * EntryApiController
@@ -12,19 +13,20 @@ class EntryApiController extends CoreController
 {
     /**
      * @Inject
-     * @Header(contentType="json", allowMethod="GET")
+     * @Header(contentType="html", allowMethod="GET")
+     * @Template("monthly_archive.tmpl")
      */
-    public function entryMonthlyCount()
+    public function entryMonthlyArchive()
     {
-        echo json_encode(["monthly" => $this->EntryApi->entryMonthlyCount()]);
+        $this->EntryApi->entryMonthlyArchive();
     }
 
     /**
      * @Inject
-     * @Header(contentType="json", allowMethod="GET")
+     * @Header(contentType="html", allowMethod="GET")
+     * @Template("tag_list.tmpl")
      */
-    public function entryTagCount()
+    public function entryTagList()
     {
-        echo json_encode(["tag" => $this->EntryApi->entryTagCount()]);
     }
 }

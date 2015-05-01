@@ -5,6 +5,7 @@
         "twig/twig": "1.*",
         "mustangostang/spyc": "*",
         "twbs/bootstrap": "*",
-        "leafo/lessphp": "*"
+        "leafo/lessphp": "*",
+        "pagerfanta/pagerfanta": "*"
     }
 }

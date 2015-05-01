@@ -16,17 +16,17 @@ class EntryApiModel extends CoreModel
      * @Inject
      * @Query(file="query/diarysys-entry.xml")
      */
-    public function entryMonthlyCount()
+    public function entryMonthlyArchive()
     {
-        return $this->entryMonthlyQuery()->toArray();
+        return $this->entryMonthlyArchiveQuery();
     }
 
     /**
      * @Inject
      * @Query(file="query/diarysys-entry.xml")
      */
-    public function entryTagCount()
+    public function entryTagList()
     {
-        return $this->entryTagQuery()->toArray();
+        return $this->entryTagListQuery();
     }
 }
