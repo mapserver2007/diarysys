@@ -14,7 +14,7 @@ CREATE TABLE `T_Entry` (
   `updated_at` datetime NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `IX_CREATED_AT` (`created_at`),
+  KEY `IX_CREATED_AT` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `M_Tag` (
