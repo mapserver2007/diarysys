@@ -8,46 +8,6 @@ use WebStream\Core\CoreService;
  */
 class EntryService extends CoreService
 {
-    private $pathInfo;
-
-    private $entryList;
-
-    private $entryCount;
-
-    private $currentPage;
-
-    private $maxPerPage;
-
-    public function setPathInfo($pathInfo)
-    {
-        $this->pathInfo = $pathInfo;
-    }
-
-    public function getPathInfo()
-    {
-        return $this->pathInfo;
-    }
-
-    public function getEntryList()
-    {
-        return $this->entryList;
-    }
-
-    public function getEntryCount()
-    {
-        return $this->entryCount;
-    }
-
-    public function getCurrentPage()
-    {
-        return $this->currentPage;
-    }
-
-    public function getMaxPerPage()
-    {
-        return $this->maxPerPage;
-    }
-
     public function entryList(array $params)
     {
         $this->currentPage = $params['page'];
@@ -62,7 +22,8 @@ class EntryService extends CoreService
                     "description" => $entry["description"],
                     "createdAt" => $entry["created_at"],
                     "categoryMapList" => [],
-                    "tagMapList" => []
+                    "tagMapList" => [],
+                    "categoryName" => $entry["category_name"]
                 ];
             }
 

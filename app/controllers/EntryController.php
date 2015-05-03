@@ -31,7 +31,7 @@ class EntryController extends ApplicationController
     {
         $this->num = 10;
         $this->page = $this->request->get("p") ? intval($this->request->get("p")) : 1;
-        $this->Entry->setPathInfo($this->request->getBaseURL() . $this->request->getPathInfo());
+        $this->Entry->pathInfo = $this->request->getBaseURL() . $this->request->getPathInfo();
     }
 
     /**
@@ -49,11 +49,11 @@ class EntryController extends ApplicationController
      * @Inject
      * @Validate(key="p", rule="page", method="get")
      * @Header(contentType="html", allowMethod="GET")
-     * @Template("index.tmpl")
+     * @Template("entry.tmpl")
      */
     public function entryById(array $params)
     {
-        $this->entryList([
+        $entryList = $this->entryList([
             'entry_id' => intval($params["entry_id"])
         ]);
     }
@@ -105,7 +105,7 @@ class EntryController extends ApplicationController
         ]);
     }
 
-    private function entryList($params)
+    private function entryList(array $params = [])
     {
         $this->Entry->entryList(array_merge($params, ['num' => $this->num, 'page' => $this->page]));
         $this->Entry->entryCount($params);

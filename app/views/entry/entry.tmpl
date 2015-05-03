@@ -6,14 +6,7 @@
 <body>
 
 %T{common_header.tmpl}
-
-<div class="pagerfanta">
-%P{$helper->getPaginate($model->currentPage, $model->maxPerPage, $model->entryCount, $model->pathInfo)}
-</div>
-
-<div id="entry_list">
-%P{$helper->getEntryBox($model->entryList)}
-</div>
+%P{$helper->getEntry($model->entryList)}
 
 <div id="sub_content">
 <div class="left_container">

@@ -25,13 +25,7 @@ body {
   float:right;
 }
 
-.navLink {
-  display: block;
-  text-align: center;
-  padding-top: .8em;
-}
-
-#header {
+#common_header {
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
@@ -39,6 +33,12 @@ body {
   position: relative;
   text-align: left;
   width: 95%;
+}
+
+.navLink {
+  display: block;
+  text-align: center;
+  padding-top: .8em;
 }
 
 .login_menu {
@@ -65,6 +65,66 @@ h1 {
 }
 
 #entry {
+  margin: 5px auto 15px;
+  max-width: 1000px;
+  min-width: 600px;
+  position: relative;
+  text-align: left;
+  width: 95%;
+}
+
+.entry_info {
+  padding: 10px 0;
+}
+
+.entry_info p {
+  font-size: 10px;
+  color: red;
+  background-color: #FFFFFF;
+  border: 1px solid red;
+  -webkit-transform-origin: 10% 100%;
+  -webkit-transform: rotate(-15deg);
+  margin-top: 30px;
+  margin-left: 10px;
+  position: relative;
+  z-index: 1010;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 5px;
+  width: 100px;
+  padding: 4px;
+  text-align: center;
+}
+
+.entry_info p a {
+  color: red;
+}
+
+.entry_info h2 {
+  margin-top: -6px;
+  color: #FF8000;
+}
+
+.entry_date {
+  background: #FFFFFF url(/diarysys/img/calendar.png) no-repeat scroll 0 50%;
+  padding-left: 20px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.entry_tag {
+  background: #FFFFFF url(/diarysys/img/tag.gif) no-repeat scroll 0 50%;
+  padding-left: 20px;
+  height: 20px;
+  padding-top: 5px;
+}
+
+.entry_description {
+  padding: 10px;
+  font-size: 14px;
+}
+
+#entry_list {
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
