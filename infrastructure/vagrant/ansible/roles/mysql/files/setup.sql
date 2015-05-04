@@ -14,8 +14,9 @@ CREATE TABLE `T_Entry` (
   `updated_at` datetime NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `IX_CREATED_AT` (`created_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `IX_CREATED_AT` (`created_at`),
+  FULLTEXT INDEX `IX_FULLTEXT_TITLE_DESCRIPTION` (title, description)
+) ENGINE=mroonga DEFAULT CHARSET=utf8 COMMENT='ENGINE "InnoDB"';
 
 CREATE TABLE `M_Tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

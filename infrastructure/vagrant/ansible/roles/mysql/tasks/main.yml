@@ -3,6 +3,8 @@
   with_items:
     - mysql-community-server
     - MySQL-python
+- name: start mysql and enabled
+  service: name=mysqld state=started enabled=yes
 - name: copy sqlfile
   copy: "src={{ mysql_sqlfile }} dest=/home/vagrant/"
 - name: copy my.cnf
@@ -12,6 +14,12 @@
 - name: copy timezone sql
   copy: src=setup-timezone.sql dest=/home/vagrant/
 - name: start mysql and enabled
+  service: name=mysqld state=started enabled=yes
+- name: install mroonga
+  yum: name={{ item }} state=latest
+  with_items:
+    - mysql-community-mroonga
+- name: enable mroonga
   service: name=mysqld state=started enabled=yes
 - name: create user
   mysql_user: "name={{ mysql_userid }} password={{ mysql_passwd }} host={{ item }} priv={{ db_name }}.*:ALL,GRANT state=present"

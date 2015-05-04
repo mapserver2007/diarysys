@@ -5,7 +5,8 @@
   with_items:
     - https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
     - http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-    - http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+    - http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+    - http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
 - name: install git
   yum: name=git state=latest
 - name: install unzip
