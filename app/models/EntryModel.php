@@ -39,6 +39,6 @@ class EntryModel extends CoreModel
 
     private function getEntryParams()
     {
-        return ['entry_id' => null, 'tag_name' => null, 'category_name' => null, 'created_at' => null];
+        return ['entry_id' => null, 'tag_name' => null, 'category_name' => null, 'created_at' => null, 'query' => null];
     }
 }

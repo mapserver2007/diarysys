@@ -10,10 +10,14 @@
 
 <div id="sub_content">
 <div class="left_container">
-    <div id="monthly_archive"></div>
+    <div id="monthly_archive">
+        %P{$helper->async('/api/html/entry/monthly_archive')}
+    </div>
 </div>
 <div class="right_container">
-    <div id="tag_list"></div>
+    <div id="tag_list">
+        %P{$helper->async('/api/html/entry/tag_list')}
+    </div>
 </div>
 
 </body>

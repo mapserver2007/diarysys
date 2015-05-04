@@ -12,7 +12,13 @@ class EntryService extends CoreService
     {
         $this->currentPage = $params['page'];
         $this->maxPerPage = $params['num'];
+
+        if (array_key_exists('query', $params)) {
+            $this->query = $params['query'];
+        }
+
         $entryMap = [];
+
         foreach ($this->Entry->entryList($params) as $entry) {
             $entryId = $entry["id"];
             if (!array_key_exists($entryId, $entryMap)) {

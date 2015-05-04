@@ -53,7 +53,7 @@ class EntryController extends ApplicationController
      */
     public function entryById(array $params)
     {
-        $entryList = $this->entryList([
+        $entry = $this->entryList([
             'entry_id' => intval($params["entry_id"])
         ]);
     }
@@ -102,6 +102,19 @@ class EntryController extends ApplicationController
 
         $this->entryList([
             'created_at' => $list[0] . "-" . $list[1]
+        ]);
+    }
+
+    /**
+     * @Inject
+     * @Validate(key="p", rule="max_length[30]", method="get")
+     * @Header(contentType="html", allowMethod="GET")
+     * @Template("index.tmpl")
+     */
+    public function entrySearch()
+    {
+        $entry = $this->entryList([
+            'query' => $this->request->get("q")
         ]);
     }
 

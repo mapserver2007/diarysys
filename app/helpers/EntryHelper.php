@@ -13,6 +13,10 @@ class EntryHelper extends CoreHelper
 
     public function getEntry($entryList)
     {
+        if (empty($entryList)) {
+            return;
+        }
+
         $entry = reset($entryList);
         $title = safetyOut($entry['title']);
         $description = safetyOut($entry['description']);
@@ -34,7 +38,7 @@ TAG;
     <p><a href="/diarysys/category/${categoryName}">${categoryName}</a></p>
     <h2>${title}</h2>
     <span class="entry_tag">
-        ${tagName}
+        ${tagHtml}
     </span>
     <span class="entry_date">${createdAt}</span>
 </div>
@@ -86,5 +90,10 @@ HELPER;
         };
 
         return $view->render($pagerfanta, $routeGenerator, $options);
+    }
+
+    public function getBreadCrumbList()
+    {
+
     }
 }

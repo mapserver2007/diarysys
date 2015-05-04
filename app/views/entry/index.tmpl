@@ -7,8 +7,16 @@
 
 %T{common_header.tmpl}
 
-<div class="pagerfanta">
-%P{$helper->getPaginate($model->currentPage, $model->maxPerPage, $model->entryCount, $model->pathInfo)}
+<div class="search">
+<div class="left_container" style="margin-left:430px;">
+    <div class="pagerfanta">
+    %P{$helper->getPaginate($model->currentPage, $model->maxPerPage, $model->entryCount, $model->pathInfo)}
+    </div>
+</div>
+<div class="right_container">
+    <input type="text" class="form-control input-sm" id="entry_search" value="%H{$model->query}" placeholder="エントリを検索"/>
+</div>
+<div class="clearfix"></div>
 </div>
 
 <div id="entry_list">
@@ -17,11 +25,20 @@
 
 <div id="sub_content">
 <div class="left_container">
-    <div id="monthly_archive"></div>
+    <div id="monthly_archive">
+        %P{$helper->async('/api/html/entry/monthly_archive')}
+    </div>
 </div>
 <div class="right_container">
-    <div id="tag_list"></div>
+    <div id="tag_list">
+        %P{$helper->async('/api/html/entry/tag_list')}
+    </div>
 </div>
 
+<script type="text/javascript">
+$(function() {
+    Blog.PC.Entry.event();
+});
+</script>
 </body>
 </html>

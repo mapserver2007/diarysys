@@ -109,7 +109,7 @@ h1 {
   background: #FFFFFF url(/diarysys/img/calendar.png) no-repeat scroll 0 50%;
   padding-left: 20px;
   font-size: 14px;
-  margin-left: 10px;
+  margin-left: 3px;
 }
 
 .entry_tag {
@@ -117,6 +117,10 @@ h1 {
   padding-left: 20px;
   height: 20px;
   padding-top: 5px;
+}
+
+.entry_tag span {
+  padding-right: 3px;
 }
 
 .entry_description {
@@ -278,6 +282,36 @@ h1 {
 
 .tagcloud10 {
   font-size : 300%;
+}
+
+.search {
+  margin: 5px auto 15px;
+  max-width: 1000px;
+  min-width: 600px;
+  position: relative;
+  text-align: left;
+  width: 95%;
+}
+
+#entry_search {
+  background: #FFFFFF url(/diarysys/img/search.gif) no-repeat scroll 0 50%;
+  height: 22px;
+  padding-left: 19px;
+}
+
+
+
+
+/** 管理画面 */
+
+
+#manage_entry_list {
+  margin: 5px auto 15px;
+  max-width: 1000px;
+  min-width: 600px;
+  position: relative;
+  text-align: left;
+  width: 95%;
 }
 
 /** 以下使ってない  */
