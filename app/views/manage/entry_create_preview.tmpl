@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+%T{head.tmpl}
+<link type="text/css" rel="stylesheet" href="/diarysys/css/github-markdown.css"/>
+<script type="text/javascript" src="/diarysys/js/lib/quicktags_plus.js"></script>
+<script type="text/javascript" src="/diarysys/js/lib/marked.min.js"></script>
+</head>
+<body>
+
+<div id="entry">
+<div class="entry_info">
+    <p id="category_preview"></p>
+    <h2 id="title_preview"></h2>
+    <span id="tag_preview" class="entry_tag"></span>
+</div>
+<div id="description_preview" class="markdown-body">
+</div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    Blog.PC.Manage.entryCreatePreview();
+});
+</script>
+</body>
+</html>

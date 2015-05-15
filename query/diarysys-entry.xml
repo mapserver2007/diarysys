@@ -29,6 +29,7 @@
         AND (ISNULL(:category_name) OR C.name = :category_name)
         AND (ISNULL(:created_at) OR SUBSTRING(E.created_at, 1, 7) = :created_at)
         AND (ISNULL(:query) OR MATCH (E.title, E.description) AGAINST(:query IN BOOLEAN MODE) <> 0)
+        AND E.is_delete = 0
     ) AS TBL
     WHERE TBL.row_num > (:page - 1) * :num AND TBL.row_num <= :page * :num;
     ]]>
@@ -49,6 +50,7 @@
         AND (ISNULL(:category_name) OR C.name = :category_name)
         AND (ISNULL(:created_at) OR SUBSTRING(E.created_at, 1, 7) = :created_at)
         AND (ISNULL(:query) OR MATCH (E.title, E.description) AGAINST(:query IN BOOLEAN MODE) <> 0)
+        AND E.is_delete = 0
       GROUP BY E.id
     ) AS TBL
     ]]>
@@ -61,6 +63,8 @@
       COUNT(*) AS count
   FROM
       T_Entry
+  WHERE
+      is_delete = 0
   GROUP BY
       month DESC
   ]]>
@@ -76,6 +80,11 @@
       INNER JOIN
       M_EntryTag ET ON
       T.id = ET.tag_id
+      INNER JOIN
+      T_Entry E ON
+      ET.entry_id = E.id
+  WHERE
+      E.is_delete = 0
   GROUP BY
       T.id
   ]]>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+%T{head.tmpl}
+</head>
+<body>
+%T{manage/common_header.tmpl}
+<div class="search">
+<div class="left_container" style="margin-left:435px;">
+<div class="pagerfanta">
+%P{$helper->getPaginate($model->currentPage, $model->maxPerPage, $model->entryCount, $model->pathInfo)}
+</div>
+</div>
+<div class="right_container">
+    <input type="text" class="form-control input-sm" id="entry_search" value="%H{$model->query}" placeholder="エントリを検索"/>
+</div>
+<div class="clearfix"></div>
+</div>
+
+<div id="manage_entry_list">
+<table class="table table-striped table-bordered">
+<thead>
+<th>タイトル</th>
+<th>日付</th>
+<th>削除</th>
+</thead>
+<tbody>
+%P{$helper->getEntryList($model->entryList)}
+</tbody>
+</table>
+</div>
+
+<div class="pagerfanta">
+%P{$helper->getPaginate($model->currentPage, $model->maxPerPage, $model->entryCount, $model->pathInfo)}
+</div>
+
+<script type="text/javascript">
+$(function() {
+    Blog.PC.Manage.entryListPage();
+});
+</script>
+
+</body>
+</html>

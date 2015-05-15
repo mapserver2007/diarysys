@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+%T{head.tmpl}
+</head>
+<body>
+<h1>画像一覧</h1>
+
+<div class="upload_image_container" id="image_list"></div>
+<div class="thumb_next_button">
+<input type="button" id="next" class="btn btn-primary btn-xs" value="次&gt;&gt;"/>
+</div>
+<div id="image_num" data-num="%H{$model->imageNum}" style="display:none;"></div>
+
+<script type="text/javascript">
+$(function() {
+    Blog.PC.Manage.entryCreateImage();
+});
+</script>
+</body>
+</html>

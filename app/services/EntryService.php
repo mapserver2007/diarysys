@@ -18,7 +18,6 @@ class EntryService extends CoreService
         }
 
         $entryMap = [];
-
         foreach ($this->Entry->entryList($params) as $entry) {
             $entryId = $entry["id"];
             if (!array_key_exists($entryId, $entryMap)) {

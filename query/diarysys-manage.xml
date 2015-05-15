@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+  "-//github.com/mapserver2007//DTD Mapper 3.0//EN"
+  "http://summer-lights.jp/diarysys6/diarysys-model-mapper.dtd">
+<mapper namespace="Blog\Manage">
+  <select id="entrySummaryListQuery">
+    <![CDATA[
+    SELECT
+      id,
+      title,
+      created_at
+    FROM
+      T_Entry
+    WHERE 1 = 1
+      AND (ISNULL(:query) OR MATCH (title, description) AGAINST(:query IN BOOLEAN MODE) <> 0)
+      AND is_delete = 0
+    ORDER BY id DESC
+    LIMIT :limit, :offset;
+    ]]>
+  </select>
+
+  <select id="entryCountQuery">
+    <![CDATA[
+    SELECT
+      COUNT(*) AS count
+    FROM T_Entry
+    WHERE 1 = 1
+      AND (ISNULL(:query) OR MATCH (title, description) AGAINST(:query IN BOOLEAN MODE) <> 0)
+      AND is_delete = 0
+    ]]>
+  </select>
+
+  <select id="entryByIdQuery">
+    <![CDATA[
+    SELECT
+      E.id,
+      E.title,
+      E.description,
+      E.created_at,
+      T.id AS tag_id,
+      T.name AS tag_name,
+      C.id AS category_id,
+      C.name AS category_name
+    FROM T_Entry E
+    LEFT JOIN M_EntryTag ET ON ET.entry_id = E.id
+    LEFT JOIN M_Tag T on T.id = ET.tag_id
+    LEFT JOIN M_Category C ON C.id = E.category_id
+    WHERE E.id = :entry_id
+      AND E.is_delete = 0
+    ]]>
+  </select>
+
+  <update id="entryDeleteByIdQuery">
+    <![CDATA[
+    UPDATE
+        T_Entry
+    SET
+        is_delete = 1
+    WHERE
+        id = :entry_id
+    ]]>
+  </update>
+
+  <select id="tagListQuery">
+  <![CDATA[
+  SELECT
+      T.id,
+      T.name,
+      COUNT(*) AS count
+  FROM
+      M_Tag T
+      INNER JOIN
+      M_EntryTag ET ON
+      T.id = ET.tag_id
+      INNER JOIN
+      T_Entry E ON
+      ET.entry_id = E.id
+  WHERE
+      E.is_delete = 0
+  GROUP BY
+      T.id
+  ]]>
+  </select>
+
+  <select id="categoryQuery">
+  <![CDATA[
+  SELECT
+      id,
+      name
+  FROM
+      M_Category
+  ]]>
+  </select>
+</mapper>

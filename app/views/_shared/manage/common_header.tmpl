@@ -1,0 +1,17 @@
+<h1 class="site_title">管理画面</h1>
+
+<div id="common_header">
+  <div>
+    <ul id="tab">
+      <li>
+        <a href="/diarysys/manage" %P{$helper->getTabSelect("/diarysys/manage", $model->pathInfo)}>エントリ一覧</a>
+      </li>
+      <li>
+        <a href="/diarysys/manage/entry_create" %P{$helper->getTabSelect("/diarysys/manage/register", $model->pathInfo)}>エントリ作成</a>
+      </li>
+      <li>
+        <a href="/diarysys/manage/images" %P{$helper->getTabSelect("/diarysys/manage/images", $model->pathInfo)}>画像一覧</a>
+      </li>
+    </ul>
+  </div>
+</div>

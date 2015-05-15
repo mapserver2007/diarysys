@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+%T{head.tmpl}
+</head>
+<body>
+%T{manage/common_header.tmpl}
+
+<form action="/diarysys/manage/entry_create/confirm" method="post">
+<div id="sub_content">
+    <h2 class="section_title">エントリ作成</h2>
+    <div class="left_container">
+        <h3 class="section_sub_title">タイトル</h3>
+        <input type="text" name="title" id="title" class="form-control input-sm" placeholder="タイトル"/>
+        <h3 class="section_sub_title">本文</h3>
+        <textarea name="description" id="description" class="form-control input-sm"></textarea>
+        <br/>
+        <div class="left_container">
+            <div>
+                <label style="margin-right:5px;"><input type="checkbox" id="realtime"/>リアルタイムプレビュー</label>
+                <label style="margin-right:5px;"><input type="checkbox" id="image_no_preview"/>画像をプレビューしない</label>
+            </div>
+            <div>
+                <label style="margin-right:5px;"><input type="radio" name="docmode" id="mode_bbcode"/>BBコード形式</label>
+                <label style="margin-right:5px;"><input type="radio" name="docmode" id="mode_markdown"/>Markdown形式</label>
+            </div>
+        </div>
+        <div class="right_container option_buttons">
+            <input type="button" value="セーブ" class="btn btn-primary btn-xs" id="save_cache"/>
+            <input type="button" value="ロード" class="btn btn-primary btn-xs" id="read_cache"/>
+            <input type="button" value="プレビュー" class="btn btn-primary btn-xs" id="preview"/>
+            <input type="button" value="画像" class="btn btn-primary btn-xs" id="upload_image"/>
+        </div>
+        <div class="clearfix"></div>
+        <h3 class="section_sub_title">タグ</h3>
+        <div id="tag_list">
+            %P{$helper->async('/api/html/manage/entry_create/tags')}
+        </div>
+        <h3 class="section_sub_title">カテゴリ</h3>
+        <div id="category">
+            %P{$helper->async('/api/html/manage/entry_create/category')}
+        </div>
+    </div>
+</div>
+</form>
+
+<script type="text/javascript">
+$(function() {
+    Blog.PC.Manage.entryCreate();
+});
+</script>
+</body>
+</html>

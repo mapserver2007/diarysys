@@ -13,6 +13,7 @@ CREATE TABLE `T_Entry` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `category_id` int(11) NOT NULL,
+  `is_delete` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `IX_CREATED_AT` (`created_at`),
   FULLTEXT INDEX `IX_FULLTEXT_TITLE_DESCRIPTION` (title, description)

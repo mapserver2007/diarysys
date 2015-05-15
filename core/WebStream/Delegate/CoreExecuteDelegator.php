@@ -235,6 +235,7 @@ class CoreExecuteDelegator
                 "helper" => $resolver->runHelper(),
                 "mimeType" => $mimeType
             ]);
+
             if ($template->cacheTime !== null) {
                 $cacheFile = STREAM_CACHE_PREFIX . $this->camel2snake($pageName) . "-" . $this->camel2snake($method);
                 $view->templateCache($cacheFile, ob_get_contents(), $template->cacheTime);
