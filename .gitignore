@@ -4,6 +4,7 @@ sandbox/
 log/*.log
 log/*.status
 app/views/_cache/
+app/views/_public/img/upload
 vendor
 composer.phar
 composer.lock
